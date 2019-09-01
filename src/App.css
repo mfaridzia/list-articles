@@ -1,0 +1,51 @@
+.App {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.articles {
+  display: flex;
+  justify-content: center;
+  border: 2px solid grey;
+  width: 50%;
+  margin: 10px auto;
+  border-radius: 4px;
+  padding: 10px;
+}
+.articles a {
+  color: #000;
+  font-size: 25px;
+}
+.favorite-article {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: column;
+}
+.favorite-article input {
+  margin-bottom: 20px;
+  width: 500px;
+  height: 60px;
+}
+.favorite-article button {
+  padding: 10px;
+}
+
+@media screen and (max-width: 400px) {
+  .App h1 {
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+  }
+  .App a {
+    font-size: 14px;
+  }
+  .favorite-article input {
+    margin-bottom: 20px;
+    width: 200px;
+    height: 30px;
+  }
+  .favorite-article button {
+    padding: 10px;
+  }
+}
