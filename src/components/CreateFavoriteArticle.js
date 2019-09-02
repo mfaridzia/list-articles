@@ -14,19 +14,21 @@ const CreateFavoriteArticle = (props) => {
   
   const handleCreateFavoriteArticle = () => {
     const date = generateDate();
-    const newArticle = { title, date, link };
+    const status = "undone";
+    const newFavoriteArticle = { title, date, link, status };
     getFirebase()
       .database()
       .ref()
       .child(`articles/${title}`)
-      .set(newArticle)
+      .set(newFavoriteArticle)
       .then(() => props.history.push('/'));
   }
 
   return (
     <div className="App">
       <center>
-        <Link to="/"> Kembali ke Daftar Artikel </Link>
+        <Link className="link" to="/"> Halaman Utama </Link> 
+        <Link className="link" to="/artikel-selesai-dibaca"> Artikel yang Sudah Dibaca </Link>
       </center>
       <div className="favorite-article">
         <label htmlFor="title"> Title </label>

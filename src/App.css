@@ -4,12 +4,20 @@
   justify-content: center;
   align-items: center;
 }
+.link {
+  background: rgb(37, 36, 36);
+  padding: 6px;
+  color: #fff;
+  margin-left: 20px;
+  text-decoration: none;
+  border-radius: 4px;
+}
 .articles {
   display: flex;
   justify-content: center;
   border: 2px solid grey;
-  width: 50%;
-  margin: 10px auto;
+  width: 70%;
+  margin: 20px auto;
   border-radius: 4px;
   padding: 10px;
 }
@@ -30,11 +38,32 @@
 .favorite-article button {
   padding: 10px;
 }
+.btn-remove {
+  border: none;
+  background: rgb(221, 92, 92);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+.btn-remove:hover {
+  opacity: 0.7;
+}
+.btn-done {
+  border: none;
+  background: rgb(85, 84, 84);
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
 
 @media screen and (max-width: 400px) {
   .App h1 {
     font-size: 20px;
-    width: 50%;
+    width: 70%;
     text-align: center;
   }
   .App a {
@@ -47,5 +76,11 @@
   }
   .favorite-article button {
     padding: 10px;
+  }
+  .link {
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    margin-left: 10px;
   }
 }

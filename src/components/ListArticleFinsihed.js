@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { getFirebase } from "../firebase";
 
- function ListFavoriteArticle(props) {
+ function ListArticleFinished(props) {
   const [articles, setArticles] = useState([]);
   
   useEffect(() => {
@@ -15,7 +15,7 @@ import { getFirebase } from "../firebase";
       let favoriteArticle = [];
       const snapshotVal = snapshot.val();
       for(let data in snapshotVal) {
-        if(snapshotVal[data].status === "undone") {
+        if(snapshotVal[data].status === "done") {
           favoriteArticle.push(snapshotVal[data]);
         }
       } 
@@ -24,36 +24,26 @@ import { getFirebase } from "../firebase";
     })
   }, [articles])
 
-  const updateStatus = (title) => {
-      getFirebase()
-        .database()
-        .ref('articles/' + title)
-        .update({status: "done"})
-  }
-
   const removeFavoriteArticle = (title) => {
     getFirebase()
       .database()
       .ref('articles/' + title)
       .remove()
-      .then(() => props.history.push('/'));
+      .then(() => props.history.push('/artikel-selesai-dibaca'));
   }
 
   return (
     <>
       <center>
-        <Link className="link" to="/buat-artikel-favorit"> Buat Artikel Favorit</Link> 
-        <Link className="link" to="/artikel-selesai-dibaca"> Artikel yang Sudah Dibaca </Link>
+        <Link className="link" to="/"> Halaman Utama </Link> 
+        <Link className="link" to="/buat-artikel-favorit"> Buat Artikel Favorit Kalian </Link>
       </center>
       {articles.map((article, index) => (
         <div className="articles" key={index}>
           <p> 
-            <a href={article.link}> { article.title } </a>
+            <a href={article.link}> { article.title } </a> 
             <button className="btn-remove" onClick={() => removeFavoriteArticle(article.title)}> 
               &times; 
-            </button>
-            <button className="btn-done" onClick={() => updateStatus(article.title)}> 
-              Done 
             </button>
           </p>
         </div>
@@ -62,4 +52,4 @@ import { getFirebase } from "../firebase";
   );
 }
 
-export default ListFavoriteArticle;
+export default ListArticleFinished;
