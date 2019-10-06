@@ -24,7 +24,7 @@ function ListFavoriteArticle (props: RouteComponentProps) {
       const newestFirst: any = favoriteArticle.reverse();
       setArticles(newestFirst);
     })
-  }, [])
+  }, [articles])
 
   const updateStatus = (title: string) => {
     getFirebase()

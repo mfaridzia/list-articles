@@ -24,7 +24,7 @@ import { DataSnapshot } from './types';
       const newestFirst: any = favoriteArticle.reverse();
       setArticles(newestFirst);
     })
-  }, [])
+  }, [articles])
 
   const removeFavoriteArticle = (title: string) => {
     getFirebase()
