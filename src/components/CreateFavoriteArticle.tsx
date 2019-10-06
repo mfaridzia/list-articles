@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { getFirebase } from "../firebase";
+import Menu from './Menu';
 
-const CreateFavoriteArticle = (props) => {
+const CreateFavoriteArticle = (props: RouteComponentProps) => {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
 
   const generateDate = () => {
-    const now = new Date();
-    const options = { month: "long", day: "numeric", year: "numeric" };
+    const now: Date = new Date();
+    const options: {} = { month: "long", day: "numeric", year: "numeric" };
     return now.toLocaleDateString("en-US", options);
   };
   
   const handleCreateFavoriteArticle = () => {
     const date = generateDate();
-    const status = "undone";
+    const status: string = "undone";
     const newFavoriteArticle = { title, date, link, status };
     getFirebase()
       .database()
@@ -26,10 +27,10 @@ const CreateFavoriteArticle = (props) => {
 
   return (
     <div className="App">
-      <center>
+      <Menu>
         <Link className="link" to="/"> Halaman Utama </Link> 
         <Link className="link" to="/artikel-selesai-dibaca"> Artikel yang Sudah Dibaca </Link>
-      </center>
+      </Menu>
       <div className="favorite-article">
         <label htmlFor="title"> Title </label>
         <input 

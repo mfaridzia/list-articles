@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { getFirebase } from "../firebase";
+import Menu from './Menu';
+import { DataSnapshot } from './types';
 
- function ListArticleFinished(props) {
+ function ListArticleFinished(props: RouteComponentProps) {
   const [articles, setArticles] = useState([]);
   
   useEffect(() => {
@@ -11,20 +13,20 @@ import { getFirebase } from "../firebase";
     .ref("/articles")
     .orderByChild("date")
     .once("value")
-    .then(snapshot => {
-      let favoriteArticle = [];
+    .then((snapshot: DataSnapshot) => {
+      let favoriteArticle: string[] = [];
       const snapshotVal = snapshot.val();
       for(let data in snapshotVal) {
         if(snapshotVal[data].status === "done") {
           favoriteArticle.push(snapshotVal[data]);
         }
       } 
-      const newestFirst = favoriteArticle.reverse();
+      const newestFirst: any = favoriteArticle.reverse();
       setArticles(newestFirst);
     })
-  }, [articles])
+  }, [])
 
-  const removeFavoriteArticle = (title) => {
+  const removeFavoriteArticle = (title: string) => {
     getFirebase()
       .database()
       .ref('articles/' + title)
@@ -34,11 +36,11 @@ import { getFirebase } from "../firebase";
 
   return (
     <>
-      <center>
+      <Menu>
         <Link className="link" to="/"> Halaman Utama </Link> 
         <Link className="link" to="/buat-artikel-favorit"> Buat Artikel Favorit Kalian </Link>
-      </center>
-      {articles.map((article, index) => (
+      </Menu>
+      {articles.map((article: DataSnapshot, index) => (
         <div className="articles" key={index}>
           <p> 
             <a href={article.link}> { article.title } </a> 
