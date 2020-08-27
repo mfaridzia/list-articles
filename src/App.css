@@ -59,6 +59,11 @@
   cursor: pointer;
   margin: 10px;
 }
+p.loading {
+  text-align: center;
+  font-size: 30px;
+  margin-top: 50px;
+}
 
 @media screen and (max-width: 400px) {
   .App h1 {

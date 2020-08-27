@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <h1> Artikel favorit yang bisa kalian baca </h1>
+        <h1> Artikel favorit yang bisa anda baca </h1>
       </div>
       <Switch>
         <Route exact path="/" component={ListFavoriteArticle} />
