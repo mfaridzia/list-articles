@@ -8,14 +8,14 @@ const CreateFavoriteArticle = (props: RouteComponentProps) => {
   const [link, setLink] = useState("");
 
   const generateDate = () => {
-    const now: Date = new Date();
+    const now = new Date();
     const options: {} = { month: "long", day: "numeric", year: "numeric" };
     return now.toLocaleDateString("en-US", options);
   };
   
   const handleCreateFavoriteArticle = () => {
     const date = generateDate();
-    const status: string = "undone";
+    const status = "undone";
     const newFavoriteArticle = { title, date, link, status };
     getFirebase()
       .database()

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { getFirebase } from "../firebase";
 import Menu from './Menu';
-import { DataSnapshot } from './types';
+import { Article } from './types';
 
 function ListFavoriteArticle (props: RouteComponentProps) {
-  const [articles, setArticles] = useState<DataSnapshot[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   
   useEffect(() => {
      getFirebase()
@@ -13,15 +13,15 @@ function ListFavoriteArticle (props: RouteComponentProps) {
     .ref("/articles")
     .orderByChild("date")
     .once("value")
-    .then((snapshot: DataSnapshot) => {
-      let favoriteArticle: DataSnapshot[] = [];
+    .then((snapshot: Article) => {
+      let favoriteArticle: Article[] = [];
       const snapshotVal = snapshot.val();
       for(let data in snapshotVal) {
         if(snapshotVal[data].status === "undone") {
           favoriteArticle.push(snapshotVal[data]);
         }
       } 
-      const newestFirst: DataSnapshot[] = favoriteArticle.reverse();
+      const newestFirst: Article[] = favoriteArticle.reverse();
       setArticles(newestFirst);
     })
   }, [articles])

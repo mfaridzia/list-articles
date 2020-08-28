@@ -1,5 +1,5 @@
 //ref: https://github.com/firebase/firebase-js-sdk/blob/master/packages/database-types/index.d.ts
-export interface DataSnapshot {
+export interface Article {
   val(): any;
   link: string;
   title: string;
